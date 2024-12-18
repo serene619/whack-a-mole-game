@@ -1,7 +1,12 @@
 const grid = document.querySelector('.grid');
 const scoreDisplay = document.querySelector('#score');
+const timeDisplay = document.querySelector('#time');
+const resultDisplay = document.querySelector('#result');
+
 let score = 0;
+let time = 30; // 倒计时 30 秒
 let moleInterval;
+let timerInterval;
 let speed = 1000;
 
 // 动态生成 3x3 的格子
@@ -37,7 +42,7 @@ function showMole() {
 
 // 击中地鼠
 function hitMole() {
-  const audio = new Audio('hit_sound.mp3'); // 确保音乐文件路径正确
+  const audio = new Audio('mole-hit.mp3'); // 确保音频文件路径正确
   audio.play();
   
   score++;
@@ -51,15 +56,49 @@ function hitMole() {
   }
 }
 
+// 倒计时逻辑
+function startTimer() {
+  timerInterval = setInterval(() => {
+    time--;
+    timeDisplay.textContent = time;
+
+    if (time <= 0) {
+      clearInterval(timerInterval);
+      clearInterval(moleInterval);
+      endGame();
+    }
+  }, 1000);
+}
+
+// 游戏结束逻辑
+function endGame() {
+  if (score >= 50) {
+    resultDisplay.textContent = '恭喜你，胜利了！';
+    resultDisplay.style.color = 'green';
+  } else {
+    resultDisplay.textContent = '游戏失败，再接再厉！';
+    resultDisplay.style.color = 'red';
+  }
+  resultDisplay.style.display = 'block';
+}
+
 // 开始游戏
 function startGame() {
   score = 0;
+  time = 30;
   speed = 1000;
   scoreDisplay.textContent = score;
+  timeDisplay.textContent = time;
+  resultDisplay.style.display = 'none';
+
+  clearInterval(timerInterval);
   clearInterval(moleInterval);
+
   moleInterval = setInterval(showMole, speed);
+  startTimer();
 }
 
 // 初始化游戏
 startGame();
+
 

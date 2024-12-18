@@ -9,14 +9,30 @@ let moleInterval;
 let timerInterval;
 let speed = 1000;
 
-// 动态生成 3x3 的格子
-for (let i = 0; i < 9; i++) {
-  const hole = document.createElement('div');
-  hole.classList.add('hole');
-  const mole = document.createElement('div');
-  mole.classList.add('mole');
-  hole.appendChild(mole);
-  grid.appendChild(hole);
+// 根据屏幕大小生成格子
+function createGrid() {
+  const screenWidth = window.innerWidth; // 获取屏幕宽度
+  let gridSize;
+
+  if (screenWidth >= 768) {
+    gridSize = 9; // 大屏幕：3x3
+  } else if (screenWidth >= 480) {
+    gridSize = 6; // 中屏幕：2x3
+  } else {
+    gridSize = 4; // 小屏幕：1x4
+  }
+
+  // 清空旧的格子
+  grid.innerHTML = '';
+
+  for (let i = 0; i < gridSize; i++) {
+    const hole = document.createElement('div');
+    hole.classList.add('hole');
+    const mole = document.createElement('div');
+    mole.classList.add('mole');
+    hole.appendChild(mole);
+    grid.appendChild(hole);
+  }
 }
 
 // 随机选择一个洞生成地鼠
@@ -42,9 +58,9 @@ function showMole() {
 
 // 击中地鼠
 function hitMole() {
-  const audio = new Audio('mole-hit.mp3'); // 确保音频文件路径正确
+  const audio = new Audio('mole-hit.mp3');
   audio.play();
-  
+
   score++;
   scoreDisplay.textContent = score;
 
@@ -73,10 +89,10 @@ function startTimer() {
 // 游戏结束逻辑
 function endGame() {
   if (score >= 50) {
-    resultDisplay.textContent = '恭喜你，胜利了！';
+    resultDisplay.textContent = 'Winner！';
     resultDisplay.style.color = 'green';
   } else {
-    resultDisplay.textContent = '游戏失败，再接再厉！';
+    resultDisplay.textContent = 'Loser！';
     resultDisplay.style.color = 'red';
   }
   resultDisplay.style.display = 'block';
@@ -94,11 +110,12 @@ function startGame() {
   clearInterval(timerInterval);
   clearInterval(moleInterval);
 
+  createGrid();
   moleInterval = setInterval(showMole, speed);
   startTimer();
 }
 
 // 初始化游戏
+window.addEventListener('resize', createGrid); // 监听窗口大小变化
 startGame();
-
 

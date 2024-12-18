@@ -40,4 +40,7 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
   display: none;
+
+  <audio id="hit-sound" src="hit_sound.mp3" preload="auto"></audio>
+<script src="script.js"></script>
 }

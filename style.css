@@ -29,19 +29,22 @@ h1 {
 
 }
 
-.hole.active .mole {
-  display: block;
-}
-
 .mole {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   background: url('mole-cartoon.png') no-repeat center/contain;
   position: absolute;
-  bottom: 0;
+  bottom: -50px; /* 隐藏在洞的底部 */
   left: 50%;
   transform: translateX(-50%);
+  transition: bottom 0.3s ease; /* 动画弹出效果 */
   display: none;
+}
+
+.hole.active .mole {
+  display: block;
+  bottom: 0; /* 从洞底部钻出来 */
+}
 
   <audio id="hit-sound" src="hit_sound.mp3" preload="auto"></audio>
 <script src="script.js"></script>

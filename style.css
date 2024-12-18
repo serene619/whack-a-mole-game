@@ -1,50 +1,99 @@
 body {
-  text-align: center;
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 h1 {
-  font-size: 2em;
+  color: #333;
+  margin-top: 10px;
+}
+
+#score {
+  font-weight: bold;
+  color: #ff5722;
+}
+
+#time {
+  font-weight: bold;
+  color: #ff0000;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 100px); /* 创建 5x5 的格子布局 */
   gap: 10px;
-  justify-content: center;
   margin: 20px auto;
+  justify-content: center;
 }
 
 .hole {
-  width: 100px;
-  height: 100px;
-  background: url('dirt-texture.jpg') no-repeat center/cover; /* 替换为泥土纹理图片 */
-  border: 2px solid #654321; /* 深棕色边框 */
-  border-radius: 50%; /* 让洞变成圆形 */
+  background: radial-gradient(circle at center, #8B4513, #654321, #4e3524); /* 模拟泥土洞 */
+  border: 2px solid #4e3524;
+  border-radius: 50%; /* 圆形 */
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.5); /* 内部阴影模拟洞的深度 */
-
+  box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.6); /* 增加深度效果 */
 }
 
 .mole {
-  width: 70px;
-  height: 70px;
-  background: url('mole-cartoon.png') no-repeat center/contain;
+  width: 100%;
+  height: 100%;
+  background: url('mole-cartoon.png') no-repeat center/contain; /* 地鼠图片 */
   position: absolute;
-  bottom: -50px; /* 隐藏在洞的底部 */
+  bottom: -50%; /* 默认隐藏在洞底部 */
   left: 50%;
   transform: translateX(-50%);
-  transition: bottom 0.3s ease; /* 动画弹出效果 */
-  display: none;
+  transition: bottom 0.3s ease; /* 平滑动画 */
+  display: none; /* 默认隐藏 */
 }
 
 .hole.active .mole {
   display: block;
-  bottom: 0; /* 从洞底部钻出来 */
+  bottom: 0; /* 地鼠钻出洞 */
+}
+
+/* 响应式设计：适配不同屏幕大小 */
+@media screen and (min-width: 768px) {
+  /* 平板或更大屏幕 */
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 三列 */
+    gap: 20px;
+    width: 300px;
+  }
+  .hole {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* 手机屏幕 */
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 两列 */
+    gap: 15px;
+    width: 200px;
+  }
+  .hole {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* 小屏手机 */
+  .grid {
+    grid-template-columns: repeat(1, 1fr); /* 一列 */
+    gap: 10px;
+    width: 120px;
+  }
+  .hole {
+    width: 60px;
+    height: 60px;
+  }
 }
 
  
-}
+

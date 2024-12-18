@@ -1,113 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>打Winnie The Pooh游戏</title>
-    <style>
-        /* 设置整个页面居中 */
-        body {
-    margin: 0;
-    height: 100vh; /* 占满整个屏幕 */
-    display: flex;
-    justify-content: center; /* 水平居中 */
-    align-items: center;     /* 垂直居中 */
-    background-image: url('background.jpg'); /* 替换为背景图片的路径 */
-    background-size: cover; /* 图片铺满整个屏幕 */
-    background-position: center; /* 图片居中显示 */
-    background-repeat: no-repeat; /* 不重复图片 */
-}
-
-#game {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 10px;
-    background-color: rgba(255, 255, 255, 0.8); /* 添加一个淡白色背景，突出地鼠区域 */
-    border-radius: 15px; /* 添加圆角 */
-    padding: 15px; /* 内边距 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
-}
-
-
-        .hole {
-            width: 100px;
-            height: 100px;
-            background-color: #c9c9c9;
-            position: relative;
-        }
-
-        .mole {
-            width: 100%; /* 让地鼠适配洞的大小 */
-            height: 100%;
-            background-image: url('mole-cartoon.png'); /* 引用地鼠图片 */
-            background-size: contain; /* 让图片完整显示 */
-            background-repeat: no-repeat; /* 不重复图片 */
-            background-position: center; /* 图片居中显示 */
-            position: absolute; /* 绝对定位 */
-            display: none; /* 默认不显示 */
-            cursor: pointer; /* 鼠标悬停时变成手指形状 */
-            }
-
-
-        h2 {
-            font-size: 24px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打地鼠游戏</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div>
-    <h2>打Winnie The Pooh游戏</h2>
-    <p>得分: <span id="score">0</span></p>
-
-    <div id="game">
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-        <div class="hole"><div class="mole"></div></div>
-    </div>
-</div>
-
-<script>
-    const moles = document.querySelectorAll('.mole');
-    const scoreElement = document.getElementById('score');
-    let score = 0;
-    let activeMole = null;
-    
-    function showMole() {
-        const index = Math.floor(Math.random() * moles.length);
-        const mole = moles[index];
-        mole.style.display = 'block';
-        mole.setAttribute('data-active', 'true');
-        mole.addEventListener('click', hitMole);
-        activeMole = mole;
-        setTimeout(() => {
-            mole.style.display = 'none';
-            mole.removeEventListener('click', hitMole);
-            mole.removeAttribute('data-active');
-            activeMole = null;
-        }, 1000);
-    }
-
-    function hitMole(event) {
-        if (event.target.getAttribute('data-active') === 'true') {
-            score++;
-            scoreElement.textContent = score;
-            event.target.style.display = 'none';
-            event.target.removeEventListener('click', hitMole);
-            event.target.removeAttribute('data-active');
-        }
-    }
-
-    setInterval(showMole, 1500);
-</script>
-
+  <h1>打地鼠游戏</h1>
+  <p>分数: <span id="score">0</span></p>
+  <div class="grid">
+    <!-- 地鼠格子，动态生成 -->
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+
 

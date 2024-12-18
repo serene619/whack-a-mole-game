@@ -1,99 +1,75 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
-  padding: 0;
+/* 首页 */
+#homepage {
   text-align: center;
+  margin-top: 50px;
 }
 
-h1 {
-  color: #333;
-  margin-top: 10px;
+#startButton {
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
-#score {
-  font-weight: bold;
-  color: #ff5722;
+#startButton:hover {
+  background-color: #45a049;
 }
 
-#time {
-  font-weight: bold;
-  color: #ff0000;
+/* 游戏区域 */
+#gameArea {
+  text-align: center;
+  margin-top: 50px;
 }
 
 .grid {
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
   margin: 20px auto;
-  justify-content: center;
+  width: 300px;
 }
 
 .hole {
-  background: radial-gradient(circle at center, #8B4513, #654321, #4e3524); /* 模拟泥土洞 */
-  border: 2px solid #4e3524;
-  border-radius: 50%; /* 圆形 */
+  width: 70px;
+  height: 70px;
+  background-color: #b5651d;
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.6); /* 增加深度效果 */
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .mole {
   width: 100%;
   height: 100%;
-  background: url('mole-cartoon.png') no-repeat center/contain; /* 地鼠图片 */
+  background-color: #ff6347;
   position: absolute;
   bottom: -50%;
   left: 50%;
   transform: translateX(-50%);
-  transition: bottom 0.3s ease-out; /* 平滑动画 */
+  transition: bottom 0.3s ease-out;
   display: none;
 }
 
-.hole.active .mole {
+.mole.active {
+  bottom: 0%;
   display: block;
-  bottom: 0%; /* 让地鼠从地下冒出来 */
 }
 
-
-/* 响应式设计：适配不同屏幕大小 */
-@media screen and (min-width: 768px) {
-  /* 平板或更大屏幕 */
-  .grid {
-    grid-template-columns: repeat(7, 1fr); /* 三列 */
-    gap: 20px;
-    width: 300px;
-  }
-  .hole {
-    width: 100px;
-    height: 100px;
-  }
+#scoreDisplay, #timeDisplay {
+  font-size: 20px;
+  margin: 10px 0;
 }
 
-@media screen and (max-width: 767px) {
-  /* 手机屏幕 */
-  .grid {
-    grid-template-columns: repeat(5, 1fr); /* 两列 */
-    gap: 15px;
-    width: 200px;
-  }
-  .hole {
-    width: 80px;
-    height: 80px;
-  }
+#resultDisplay {
+  font-size: 24px;
+  margin-top: 20px;
 }
 
-@media screen and (max-width: 480px) {
-  /* 小屏手机 */
-  .grid {
-    grid-template-columns: repeat(5, 1fr); /* 一列 */
-    gap: 10px;
-    width: 120px;
-  }
-  .hole {
-    width: 60px;
-    height: 60px;
-  }
 }
 
  

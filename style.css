@@ -1,0 +1,43 @@
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100px); /* 创建 5x5 的格子布局 */
+  gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.hole {
+  width: 100px;
+  height: 100px;
+  background-color: #8fbc8f;
+  border: 2px solid #556b2f;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hole.active .mole {
+  display: block;
+}
+
+.mole {
+  width: 80px;
+  height: 80px;
+  background: url('mole-cartoon.png') no-repeat center/contain;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}

@@ -43,17 +43,18 @@ h1 {
   height: 100%;
   background: url('mole-cartoon.png') no-repeat center/contain; /* 地鼠图片 */
   position: absolute;
-  bottom: -50%; /* 默认隐藏在洞底部 */
+  bottom: -50%;
   left: 50%;
   transform: translateX(-50%);
-  transition: bottom 0.3s ease; /* 平滑动画 */
-  display: none; /* 默认隐藏 */
+  transition: bottom 0.3s ease-out; /* 平滑动画 */
+  display: none;
 }
 
 .hole.active .mole {
   display: block;
-  bottom: 0; /* 地鼠钻出洞 */
+  bottom: 0%; /* 让地鼠从地下冒出来 */
 }
+
 
 /* 响应式设计：适配不同屏幕大小 */
 @media screen and (min-width: 768px) {

@@ -46,6 +46,5 @@ h1 {
   bottom: 0; /* 从洞底部钻出来 */
 }
 
-  <audio id="hit-sound" src="hit_sound.mp3" preload="auto"></audio>
-<script src="script.js"></script>
+ 
 }

@@ -19,12 +19,14 @@ h1 {
 .hole {
   width: 100px;
   height: 100px;
-  background-color: #8fbc8f;
-  border: 2px solid #556b2f;
-  border-radius: 10px;
+  background: url('dirt-texture.jpg') no-repeat center/cover; /* 替换为泥土纹理图片 */
+  border: 2px solid #654321; /* 深棕色边框 */
+  border-radius: 50%; /* 让洞变成圆形 */
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.5); /* 内部阴影模拟洞的深度 */
+
 }
 
 .hole.active .mole {

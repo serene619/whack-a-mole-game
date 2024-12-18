@@ -7,6 +7,7 @@ let score = 0;
 let time = 30; // 倒计时 30 秒
 let moleInterval;
 let timerInterval;
+let maxMoles = 3; // 每次最多显示 3 个地鼠
 let speed = 1000;
 
 // 根据屏幕大小生成格子
@@ -35,27 +36,32 @@ function createGrid() {
   }
 }
 
-// 随机选择一个洞生成地鼠
-function randomHole() {
-  const holes = document.querySelectorAll('.hole');
-  const index = Math.floor(Math.random() * holes.length);
-  return holes[index];
-}
 
-// 显示地鼠
+// 随机选择多个洞
 function showMole() {
-  const hole = randomHole();
-  hole.classList.add('active');
-  const mole = hole.querySelector('.mole');
+  const holes = document.querySelectorAll('.hole');
+  const activeHoles = [];
 
-  mole.addEventListener('click', hitMole);
+  // 随机选择多个洞
+  while (activeHoles.length < maxMoles) {
+    const index = Math.floor(Math.random() * holes.length);
+    const hole = holes[index];
 
-  setTimeout(() => {
-    hole.classList.remove('active');
-    mole.removeEventListener('click', hitMole);
-  }, speed);
+    // 确保没有重复选择相同的洞
+    if (!activeHoles.includes(hole)) {
+      activeHoles.push(hole);
+      hole.classList.add('active');
+      const mole = hole.querySelector('.mole');
+      mole.style.display = 'block'; // 显示地鼠
+
+      // 在 1 秒后隐藏地鼠
+      setTimeout(() => {
+        hole.classList.remove('active');
+        mole.style.display = 'none';
+      }, 1000); // 1000ms = 1秒
+    }
+  }
 }
-
 // 击中地鼠
 function hitMole() {
   const audio = new Audio('hit_sound.mp3');
@@ -64,13 +70,6 @@ function hitMole() {
   score++;
   scoreDisplay.textContent = score;
 
-  // 难度增加
-  if (score % 5 === 0 && speed > 500) {
-    speed -= 100; // 地鼠出现速度加快
-    clearInterval(moleInterval);
-    moleInterval = setInterval(showMole, speed);
-  }
-}
 
 // 倒计时逻辑
 function startTimer() {
@@ -92,7 +91,7 @@ function endGame() {
     resultDisplay.textContent = 'Winner！';
     resultDisplay.style.color = 'green';
   } else {
-    resultDisplay.textContent = 'Walau！';
+    resultDisplay.textContent = 'Walau！Try again';
     resultDisplay.style.color = 'red';
   }
   resultDisplay.style.display = 'block';

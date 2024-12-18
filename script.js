@@ -15,11 +15,11 @@ function createGrid() {
   let gridSize;
 
   if (screenWidth >= 768) {
-    gridSize = 9; // 大屏幕：3x3
+    gridSize = 49; // 大屏幕：3x3
   } else if (screenWidth >= 480) {
-    gridSize = 6; // 中屏幕：2x3
+    gridSize = 25; // 中屏幕：2x3
   } else {
-    gridSize = 4; // 小屏幕：1x4
+    gridSize = 25; // 小屏幕：1x4
   }
 
   // 清空旧的格子
@@ -58,7 +58,7 @@ function showMole() {
 
 // 击中地鼠
 function hitMole() {
-  const audio = new Audio('mole-hit.mp3');
+  const audio = new Audio('hit_sound.mp3');
   audio.play();
 
   score++;
@@ -92,7 +92,7 @@ function endGame() {
     resultDisplay.textContent = 'Winner！';
     resultDisplay.style.color = 'green';
   } else {
-    resultDisplay.textContent = 'Loser！';
+    resultDisplay.textContent = 'Walau！';
     resultDisplay.style.color = 'red';
   }
   resultDisplay.style.display = 'block';

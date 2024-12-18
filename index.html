@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>打青蛙</title>
+  <title>打地鼠游戏</title>
   <link rel="stylesheet" href="style.css">
 </head>
-  <h1>打青蛙</h1>
-<p>分数: <span id="score">0</span></p>
-<p>剩余时间: <span id="time">30</span> 秒</p>
-<div class="grid"></div>
-<p id="result" style="display: none; font-size: 24px; font-weight: bold;"></p>
+<body>
+  <!-- 主页内容 -->
+  <div id="homepage">
+    <h1>欢迎来到打地鼠游戏！</h1>
+    <p>点击下面的按钮开始游戏</p>
+    <button id="startButton">开始游戏</button>
+    <h3>游戏规则:</h3>
+    <ul>
+      <li>点击每个出现的地鼠以得分。</li>
+      <li>每次最多同时会有多个地鼠出来。</li>
+      <li>在倒计时结束前尽量打到更多地鼠。</li>
+      <li>你需要在规定时间内获得尽可能高的分数。</li>
+    </ul>
+  </div>
 
+  <!-- 游戏区域 -->
+  <div id="gameArea" style="display: none;">
+    <h1>打地鼠游戏</h1>
+    <div id="scoreDisplay">得分: 0</div>
+    <div id="timeDisplay">时间: 30</div>
+    <div id="resultDisplay"></div>
+    <div id="grid" class="grid"></div>
+    <button id="endButton" style="display: none;">结束游戏</button>
+  </div>
 
+  <script src="script.js"></script>
+</body>
 </html>
+
 
 
 

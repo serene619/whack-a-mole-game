@@ -59,7 +59,7 @@ h1 {
 @media screen and (min-width: 768px) {
   /* 平板或更大屏幕 */
   .grid {
-    grid-template-columns: repeat(3, 1fr); /* 三列 */
+    grid-template-columns: repeat(7, 1fr); /* 三列 */
     gap: 20px;
     width: 300px;
   }
@@ -72,7 +72,7 @@ h1 {
 @media screen and (max-width: 767px) {
   /* 手机屏幕 */
   .grid {
-    grid-template-columns: repeat(2, 1fr); /* 两列 */
+    grid-template-columns: repeat(5, 1fr); /* 两列 */
     gap: 15px;
     width: 200px;
   }
@@ -85,7 +85,7 @@ h1 {
 @media screen and (max-width: 480px) {
   /* 小屏手机 */
   .grid {
-    grid-template-columns: repeat(1, 1fr); /* 一列 */
+    grid-template-columns: repeat(5, 1fr); /* 一列 */
     gap: 10px;
     width: 120px;
   }
